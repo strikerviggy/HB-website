@@ -1,7 +1,7 @@
 /* ==========================================================
    Happy Bells — Animations & Particle Engine
    Generates background drifting sakura petals, manages flower bloom SVG
-   path dynamics, and handles swinging bell physics interactions.
+   path dynamics, swinging bell physics, and Instagram feed interactions.
    ========================================================== */
 
 (function () {
@@ -107,5 +107,31 @@
         }, 200);
       });
     });
+
+    // --- 3. INSTAGRAM LIKE BUTTON INTERACTION & MIRROR BLEND SCROLL TRIGGER ---
+    const likeButtons = document.querySelectorAll('.like-btn');
+    likeButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const isLiked = btn.classList.toggle('liked');
+        const countSpan = btn.querySelector('.like-count');
+        if (countSpan) {
+          let count = parseInt(countSpan.textContent.replace(/,/g, ''), 10) || 120;
+          count = isLiked ? count + 1 : count - 1;
+          countSpan.textContent = count.toLocaleString();
+        }
+      });
+    });
+
+    // Mirror Blend Scroll Sweep Observer
+    const mirrorElements = document.querySelectorAll('.mirror-blend');
+    const mirrorObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        }
+      });
+    }, { threshold: 0.2 });
+
+    mirrorElements.forEach((el) => mirrorObserver.observe(el));
   });
 })();
