@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Bells — Personalized & Memory-Based Gifts</title>
+  <meta name="description" content="Crafting bespoke memory gifts, personalized photo keepsakes, and sentimentality-infused hampers by Gayathiri Moorthi. We don't just make gifts — we make memories.">
+  <meta name="theme-color" content="#F6C9CC">
+
+  <!-- Google Fonts: Cormorant Garamond (Serif) & Plus Jakarta Sans (Sans-Serif) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="styles/variables.css">
+  <link rel="stylesheet" href="styles/main.css">
+
+  <!-- Lenis Smooth Scroll CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js" defer></script>
+</head>
+<body>
+
+  <!-- Ambient Mesh Background Orbs -->
+  <div class="ambient-bg" aria-hidden="true">
+    <div class="ambient-blob blob-1"></div>
+    <div class="ambient-blob blob-2"></div>
+    <div class="ambient-blob blob-3"></div>
+  </div>
+
+  <!-- Drifting Sakura Petals Interactive Canvas -->
+  <canvas id="petals-canvas" aria-hidden="true"></canvas>
+
+  <!-- ================= HEADER ================= -->
+  <header class="site-header">
+    <div class="container">
+      <div class="header-inner">
+        <!-- Logo & Brand Name -->
+        <a href="#" class="header-brand" aria-label="Happy Bells Homepage">
+          <img src="Asserts/HappyBellsLogo.png" alt="Happy Bells Logo" class="logo-img">
+          <span class="brand-text">Happy Bells</span>
+        </a>
+
+        <!-- Welcome Tagline Pill -->
+        <div class="header-welcome glass-pill">
+          <span class="sparkle-icon">✨</span>
+          <span>Welcome to Happy Bells</span>
+        </div>
+
+        <!-- Owner Profile Frame -->
+        <a href="#owner-story" class="owner-profile" title="Meet Gayathiri Moorthi, Founder of Happy Bells">
+          <div class="owner-info">
+            <span class="owner-name">Gayathiri Moorthi</span>
+            <span class="owner-role">Founder & Artisan</span>
+          </div>
+          <div class="owner-avatar-wrap">
+            <img src="Asserts/Owner.png" alt="Gayathiri Moorthi" class="owner-avatar">
+          </div>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= HERO SECTION ================= -->
+  <section class="hero-section" id="hero">
+    <!-- Dangling Bells Wind-Chime Visuals -->
+    <div class="dangling-bells-container" aria-hidden="true">
+      <div class="dangling-bell-item">
+        <div class="bell-string string-medium"></div>
+        <svg class="bell-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2C8.686 2 6 4.686 6 8V13.172L4.586 14.586C4.211 14.961 4 15.47 4 16C4 17.105 4.895 18 6 18H18C19.105 18 20 17.105 20 16C20 15.47 19.789 14.961 19.414 14.586L18 13.172V8C18 4.686 15.314 2 12 2Z" fill="url(#bellGrad1)"/>
+          <path d="M10 20C10 21.105 10.895 22 12 22C13.105 22 14 21.105 14 20H10Z" fill="#D8A895"/>
+          <defs>
+            <linearGradient id="bellGrad1" x1="4" y1="2" x2="20" y2="18" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#F6C9CC"/>
+              <stop offset="1" stop-color="#D8A895"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+
+      <div class="dangling-bell-item">
+        <div class="bell-string string-long"></div>
+        <svg class="bell-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2C8.686 2 6 4.686 6 8V13.172L4.586 14.586C4.211 14.961 4 15.47 4 16C4 17.105 4.895 18 6 18H18C19.105 18 20 17.105 20 16C20 15.47 19.789 14.961 19.414 14.586L18 13.172V8C18 4.686 15.314 2 12 2Z" fill="url(#bellGrad2)"/>
+          <path d="M10 20C10 21.105 10.895 22 12 22C13.105 22 14 21.105 14 20H10Z" fill="#B9A6D9"/>
+          <defs>
+            <linearGradient id="bellGrad2" x1="4" y1="2" x2="20" y2="18" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#D8A895"/>
+              <stop offset="1" stop-color="#B9A6D9"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+
+      <div class="dangling-bell-item">
+        <div class="bell-string string-short"></div>
+        <svg class="bell-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2C8.686 2 6 4.686 6 8V13.172L4.586 14.586C4.211 14.961 4 15.47 4 16C4 17.105 4.895 18 6 18H18C19.105 18 20 17.105 20 16C20 15.47 19.789 14.961 19.414 14.586L18 13.172V8C18 4.686 15.314 2 12 2Z" fill="url(#bellGrad3)"/>
+          <path d="M10 20C10 21.105 10.895 22 12 22C13.105 22 14 21.105 14 20H10Z" fill="#F6C9CC"/>
+          <defs>
+            <linearGradient id="bellGrad3" x1="4" y1="2" x2="20" y2="18" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#B9A6D9"/>
+              <stop offset="1" stop-color="#F6C9CC"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="hero-grid">
+        <!-- Hero Text & Copy -->
+        <div class="hero-content reveal-on-scroll">
+          <span class="hero-subtitle">Bespoke & Memory-Based Gifting</span>
+          <h1 class="hero-title serif">
+            We don't just make Gifts — <span class="emphasis text-gradient">We make Memories.</span>
+          </h1>
+          <p class="hero-description">
+            Thoughtfully crafted personalized keepsakes designed to capture life's sweetest milestones, warm your loved ones' hearts, and turn timeless moments into everlasting treasures.
+          </p>
+          <div class="hero-actions">
+            <a href="#showcase" class="btn-primary">
+              <span>Explore Memory Gifts</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="#owner-story" class="btn-secondary">Our Philosophy</a>
+          </div>
+        </div>
+
+        <!-- Photo Tear Interactive Reveal Card -->
+        <div class="photo-tear-wrapper reveal-on-scroll delay-1">
+          <div class="photo-tear-card">
+            <!-- Underneath Layer (Revealed when photo tears) -->
+            <div class="tear-layer-underneath">
+              <div class="underneath-content">
+                <div class="underneath-icon">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#D8A895" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                  </svg>
+                </div>
+                <h3 class="underneath-title">Crafted with Love</h3>
+                <p class="underneath-sub">Every gift carries a unique story of remembrance and warmth.</p>
+                <div class="glass-pill" style="margin-top: 8px;">
+                  <span>Happy Bells Studio</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Top Layer: Cover Image with Clip-Path Tear Mask & Horizontal Pan Viewport -->
+            <div class="tear-layer-top">
+              <div class="cover-photo-viewport">
+                <img src="Asserts/coverpage.png" alt="Happy Bells Personalized Memory Showcase" class="cover-photo">
+              </div>
+            </div>
+
+            <!-- Hint Badge -->
+            <div class="tear-hint-badge glass-pill">
+              <span>↔️ Move mouse left/right to pan photo • Hover to tear</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FLOWER BLOOM SECTION ================= -->
+  <section class="flower-bloom-section" id="bloom">
+    <div class="container">
+      <div class="glass-card bloom-card-container reveal-on-scroll">
+        <!-- Interactive Sakura Flower SVG -->
+        <div class="bloom-visual-wrap">
+          <div class="bloom-center-glow"></div>
+          <svg class="sakura-svg" viewBox="0 0 320 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="petalGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#F6C9CC" />
+                <stop offset="50%" stop-color="#F0D5C9" />
+                <stop offset="100%" stop-color="#D8A895" />
+              </linearGradient>
+              <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+                <feGaussianBlur stdDeviation="6" result="blur" />
+                <feComposite in="SourceGraphic" in2="blur" operator="over" />
+              </filter>
+            </defs>
+
+            <!-- 5 Petals of Cherry Blossom -->
+            <g class="petals-group">
+              <path class="petal petal-1" d="M160 160 C130 90, 140 30, 160 20 C180 30, 190 90, 160 160 Z" fill="url(#petalGrad)" filter="url(#softGlow)"/>
+              <path class="petal petal-2" d="M160 160 C130 90, 140 30, 160 20 C180 30, 190 90, 160 160 Z" fill="url(#petalGrad)" filter="url(#softGlow)"/>
+              <path class="petal petal-3" d="M160 160 C130 90, 140 30, 160 20 C180 30, 190 90, 160 160 Z" fill="url(#petalGrad)" filter="url(#softGlow)"/>
+              <path class="petal petal-4" d="M160 160 C130 90, 140 30, 160 20 C180 30, 190 90, 160 160 Z" fill="url(#petalGrad)" filter="url(#softGlow)"/>
+              <path class="petal petal-5" d="M160 160 C130 90, 140 30, 160 20 C180 30, 190 90, 160 160 Z" fill="url(#petalGrad)" filter="url(#softGlow)"/>
+            </g>
+
+            <!-- Flower Center Stamen & Details -->
+            <circle cx="160" cy="160" r="16" fill="#3E2C41" opacity="0.85" />
+            <circle cx="160" cy="160" r="8" fill="#D8A895" />
+          </svg>
+        </div>
+
+        <!-- Bloom Copy -->
+        <div class="bloom-content">
+          <span class="section-tag">Unfolding Sentiment</span>
+          <h2 class="section-title serif">Like Blossoms, Memories Unfurl with Time</h2>
+          <blockquote class="bloom-quote">
+            "A memory, like a cherry blossom, is precious because it is fleeting — but when captured in a gift, it blooms forever."
+          </blockquote>
+          <p class="bloom-description">
+            At Happy Bells, we believe every relationship has its own season of beauty. Whether celebrating anniversaries, birthdays, or quiet acts of love, our personalized creations unfold your story with delicacy and grace.
+          </p>
+          <div>
+            <span class="glass-pill">🌸 Sakura Symbolism • Everlasting Cherished Moments</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= GIFT SHOWCASE SECTION ================= -->
+  <section class="showcase-section" id="showcase">
+    <div class="container">
+      <div class="section-header reveal-on-scroll">
+        <span class="section-tag">Our Collections</span>
+        <h2 class="section-title serif">Handcrafted Keepsakes</h2>
+        <p class="hero-description">Explore our signature memory-based gift styles designed for warmth, elegance, and deep emotional resonance.</p>
+      </div>
+
+      <div class="showcase-grid">
+        <!-- Card 1 -->
+        <div class="glass-card gift-card parallax-card reveal-on-scroll delay-1">
+          <div class="gift-card-img-wrap">
+            <img src="Asserts/coverpage.png" alt="Personalized Memory Frames" class="gift-card-img">
+            <span class="gift-card-tag">Bestseller</span>
+          </div>
+          <h3 class="gift-card-title">Personalized Memory Frames</h3>
+          <p class="gift-card-desc">Frosted glass and wooden frames embedding your most cherished photographs, dates, and customized messages.</p>
+          <a href="https://wa.me/919025375306" target="_blank" rel="noopener" class="gift-card-link">
+            <span>Inquire on WhatsApp</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="glass-card gift-card parallax-card reveal-on-scroll delay-2">
+          <div class="gift-card-img-wrap">
+            <img src="Asserts/Owner.png" alt="Story Keepsake Boxes" class="gift-card-img" style="object-position: top;">
+            <span class="gift-card-tag">Artisan Crafted</span>
+          </div>
+          <h3 class="gift-card-title">Story Keepsake Boxes</h3>
+          <p class="gift-card-desc">Layered treasure boxes filled with memory notes, miniature bell charms, and personalized keepsakes.</p>
+          <a href="https://wa.me/919025375306" target="_blank" rel="noopener" class="gift-card-link">
+            <span>Inquire on WhatsApp</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="glass-card gift-card parallax-card reveal-on-scroll delay-3">
+          <div class="gift-card-img-wrap">
+            <img src="Asserts/HappyBellsLogo.png" alt="Milestone Celebration Hampers" class="gift-card-img" style="object-fit: contain; padding: 20px; background: rgba(255,255,255,0.4);">
+            <span class="gift-card-tag">Signature Gift</span>
+          </div>
+          <h3 class="gift-card-title">Milestone Hampers</h3>
+          <p class="gift-card-desc">Luxury curated gift sets combining custom memory pieces, soft color palettes, and celebratory details.</p>
+          <a href="https://wa.me/919025375306" target="_blank" rel="noopener" class="gift-card-link">
+            <span>Inquire on WhatsApp</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= OWNER STORY SECTION ================= -->
+  <section class="story-section" id="owner-story">
+    <div class="container">
+      <div class="glass-card story-card-grid reveal-on-scroll">
+        <div class="story-photo-wrap">
+          <img src="Asserts/Owner.png" alt="Gayathiri Moorthi" class="story-photo">
+        </div>
+        <div class="story-content">
+          <span class="section-tag">Behind Happy Bells</span>
+          <h2 class="section-title serif">A Note from Gayathiri Moorthi</h2>
+          <p class="bloom-description">
+            "I started Happy Bells out of a deep passion for sentimentality — the belief that the true value of a gift isn't in its price tag, but in the memories and emotions it evokes. When you open a Happy Bells creation, I want you to feel the warmth of a shared moment, preserved with love and elegance."
+          </p>
+          <p class="bloom-description">
+            Every piece is personalized in our studio, ensuring every detail reflects your story.
+          </p>
+          <div class="signature-line">
+            Gayathiri Moorthi
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-glass">
+        <div class="footer-grid">
+          <!-- Brand Column -->
+          <div class="footer-brand">
+            <div class="footer-logo">
+              <img src="Asserts/HappyBellsLogo.png" alt="Happy Bells" class="footer-logo-img">
+              <span class="brand-text">Happy Bells</span>
+            </div>
+            <p style="font-size: 0.92rem; color: var(--color-text-muted);">
+              Personalized & memory-based gifting. Bringing warmth, romance, and elegance to life's sweetest milestones.
+            </p>
+          </div>
+
+          <!-- Links Column -->
+          <div>
+            <h4 class="footer-title">Explore</h4>
+            <ul class="footer-links">
+              <li><a href="#hero">Home</a></li>
+              <li><a href="#bloom">Our Philosophy</a></li>
+              <li><a href="#showcase">Memory Collections</a></li>
+              <li><a href="#owner-story">About Founder</a></li>
+            </ul>
+          </div>
+
+          <!-- Contact Column -->
+          <div>
+            <h4 class="footer-title">Connect</h4>
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+              <div class="contact-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                <a href="https://wa.me/919025375306" target="_blank" style="color: inherit; text-decoration: none;">+91 9025375306</a>
+              </div>
+              <div class="contact-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                <a href="https://instagram.com/happybells_2k" target="_blank" style="color: inherit; text-decoration: none;">@happybells_2k</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Copyright -->
+        <div class="footer-bottom">
+          <span>© 2026 Happy Bells. Owned by Gayathiri Moorthi. All Rights Reserved.</span>
+          <span>We make Memories ✨</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="scripts/cursor.js"></script>
+  <script src="scripts/scroll.js"></script>
+  <script src="scripts/animations.js"></script>
+</body>
+</html>
