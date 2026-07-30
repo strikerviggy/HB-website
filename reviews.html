@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Stories & Customer Reviews — Happy Bells</title>
+  <meta name="description" content="Explore real customer reviews, WhatsApp appreciation notes, PKN School event badges, wedding gifts, and unboxing videos from Happy Bells by Gayathiri Moorthi.">
+  <meta name="theme-color" content="#F6C9CC">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="styles/variables.css">
+  <link rel="stylesheet" href="styles/main.css">
+
+  <!-- Lenis Smooth Scroll CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js" defer></script>
+</head>
+<body>
+
+  <!-- Ambient Mesh Background Orbs -->
+  <div class="ambient-bg" aria-hidden="true">
+    <div class="ambient-blob blob-1"></div>
+    <div class="ambient-blob blob-2"></div>
+    <div class="ambient-blob blob-3"></div>
+  </div>
+
+  <!-- Drifting Sakura Petals Canvas -->
+  <canvas id="petals-canvas" aria-hidden="true"></canvas>
+
+  <!-- ================= HEADER ================= -->
+  <header class="site-header">
+    <div class="container">
+      <div class="header-inner">
+        <a href="index.html" class="header-brand" aria-label="Happy Bells Homepage">
+          <img src="Asserts/HappyBellsLogo.png" alt="Happy Bells Logo" class="logo-img">
+          <span class="brand-text">Happy Bells</span>
+        </a>
+
+        <div class="header-welcome glass-pill">
+          <span class="sparkle-icon">✨</span>
+          <span>Happy Stories & Real Reviews</span>
+        </div>
+
+        <a href="index.html#owner-story" class="owner-profile" title="Meet Founder Gayathiri Moorthi">
+          <div class="owner-info">
+            <span class="owner-name">Gayathiri Moorthi</span>
+            <span class="owner-role">Founder & Artisan</span>
+          </div>
+          <div class="owner-avatar-wrap">
+            <img src="Asserts/Owner.png" alt="Gayathiri Moorthi" class="owner-avatar">
+          </div>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= HERO BANNER ================= -->
+  <section class="hero-section" style="min-height: 50vh; padding-top: 140px; padding-bottom: 40px;">
+    <div class="container" style="text-align: center;">
+      <span class="hero-subtitle">Real Moments • Real Love</span>
+      <h1 class="hero-title serif" style="margin: 12px 0;">
+        Customer Reviews & <span class="emphasis text-gradient">Happy Moments</span>
+      </h1>
+      <p class="hero-description" style="margin: 0 auto; max-width: 600px;">
+        Browse through authentic customer feedback, unboxing videos, PKN School event custom badges, and wedding milestone presentations.
+      </p>
+      <div style="margin-top: 20px;">
+        <a href="index.html#showcase" class="btn-primary">
+          <span>← Back to Products Showcase</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= STORIES & REVIEWS GALLERY ================= -->
+  <section class="testimonials-section" style="padding-top: 40px;">
+    <div class="container">
+
+      <!-- Stories Gallery Feed Grid -->
+      <div class="testimonials-feed-grid" style="grid-template-columns: repeat(3, 1fr);">
+
+        <!-- 1. Video Unboxing Card (T7.mp4) -->
+        <article class="product-card mirror-blend reveal-on-scroll" style="grid-column: span 1;">
+          <div class="insta-post-header">
+            <div class="insta-author">
+              <img src="Asserts/HappyBellsLogo.png" alt="Happy Bells" class="insta-avatar">
+              <span class="insta-author-name">happybells_2k</span>
+            </div>
+            <span class="insta-tag-badge">🎥 Video Unboxing</span>
+          </div>
+          <div class="video-viewport" id="video-wrapper" style="aspect-ratio: 9/16; max-height: 380px;">
+            <video id="testimonial-video" src="Asserts/Testimonials/T7.mp4" playsinline preload="auto" loop></video>
+            <div class="video-play-overlay" id="video-play-trigger">
+              <div class="video-play-btn">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              </div>
+            </div>
+          </div>
+          <div class="product-card-body">
+            <h3 class="product-title" style="font-size: 1.25rem;">Mother-Daughter Unboxing</h3>
+            <p class="product-description">A mother's tender smile while unboxing a custom memory frame for her little girl.</p>
+          </div>
+        </article>
+
+        <!-- 2. Marriage Event Frame (T6.png) -->
+        <article class="testimonial-card mirror-blend reveal-on-scroll delay-1 lightbox-trigger" data-img="Asserts/Testimonials/T6.png">
+          <div class="insta-post-header" style="padding: 0 0 10px 0;">
+            <span class="testimonial-tag">💒 Wedding Milestone</span>
+            <span style="font-size: 0.75rem; color: var(--color-text-muted);">Event Presentation</span>
+          </div>
+          <div class="testimonial-img-wrap" style="height: 320px;">
+            <img src="Asserts/Testimonials/T6.png" alt="Wedding Frame Presentation" class="testimonial-img">
+          </div>
+          <h3 class="product-title" style="font-size: 1.25rem; margin-top: 8px;">Wedding Gift Presentation</h3>
+          <p style="font-size: 0.88rem; color: var(--color-text-muted);">Groom and bride receiving their customized Happy Bells memory frame on their wedding day.</p>
+        </article>
+
+        <!-- 3. PKN School Custom Badges (T4.png) -->
+        <article class="testimonial-card mirror-blend reveal-on-scroll delay-2 lightbox-trigger" data-img="Asserts/Testimonials/T4.png">
+          <div class="insta-post-header" style="padding: 0 0 10px 0;">
+            <span class="testimonial-tag">🏫 PKN School Event</span>
+            <span style="font-size: 0.75rem; color: var(--color-text-muted);">Bulk Badges</span>
+          </div>
+          <div class="testimonial-img-wrap" style="height: 320px;">
+            <img src="Asserts/Testimonials/T4.png" alt="PKN School Custom Badges" class="testimonial-img">
+          </div>
+          <h3 class="product-title" style="font-size: 1.25rem; margin-top: 8px;">PKN School Student Badges</h3>
+          <p style="font-size: 0.88rem; color: var(--color-text-muted);">Custom printed celebration badges crafted for PKN School students and events.</p>
+        </article>
+
+        <!-- 4. PKN School Event Photo 2 (T5.png) -->
+        <article class="testimonial-card mirror-blend reveal-on-scroll lightbox-trigger" data-img="Asserts/Testimonials/T5.png">
+          <div class="insta-post-header" style="padding: 0 0 10px 0;">
+            <span class="testimonial-tag">🏫 PKN School Event</span>
+            <span style="font-size: 0.75rem; color: var(--color-text-muted);">Celebration</span>
+          </div>
+          <div class="testimonial-img-wrap" style="height: 320px;">
+            <img src="Asserts/Testimonials/T5.png" alt="PKN School Celebration" class="testimonial-img">
+          </div>
+          <h3 class="product-title" style="font-size: 1.25rem; margin-top: 8px;">PKN School Celebration</h3>
+          <p style="font-size: 0.88rem; color: var(--color-text-muted);">Students wearing custom Happy Bells milestone badges at PKN School function.</p>
+        </article>
+
+        <!-- 5. WhatsApp Customer Review (T1.png) -->
+        <article class="testimonial-card mirror-blend reveal-on-scroll delay-1 lightbox-trigger" data-img="Asserts/Testimonials/T1.png">
+          <div class="insta-post-header" style="padding: 0 0 10px 0;">
+            <span class="testimonial-tag">💬 WhatsApp Review</span>
+            <span style="font-size: 0.75rem; color: var(--color-text-muted);">Verified Buyer</span>
+          </div>
+          <div class="testimonial-img-wrap" style="height: 320px;">
+            <img src="Asserts/Testimonials/T1.png" alt="WhatsApp Review 1" class="testimonial-img">
+          </div>
+          <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-top: 8px;">"Frame quality is beyond words! Everyone loved it at the party."</p>
+        </article>
+
+        <!-- 6. WhatsApp Customer Review (T2.png) -->
+        <article class="testimonial-card mirror-blend reveal-on-scroll delay-2 lightbox-trigger" data-img="Asserts/Testimonials/T2.png">
+          <div class="insta-post-header" style="padding: 0 0 10px 0;">
+            <span class="testimonial-tag">💬 WhatsApp Review</span>
+            <span style="font-size: 0.75rem; color: var(--color-text-muted);">Verified Buyer</span>
+          </div>
+          <div class="testimonial-img-wrap" style="height: 320px;">
+            <img src="Asserts/Testimonials/T2.png" alt="WhatsApp Review 2" class="testimonial-img">
+          </div>
+          <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-top: 8px;">"Thank you Gayathiri! Brought happy tears to my family."</p>
+        </article>
+
+        <!-- 7. WhatsApp Customer Review (T3.png) -->
+        <article class="testimonial-card mirror-blend reveal-on-scroll lightbox-trigger" data-img="Asserts/Testimonials/T3.png">
+          <div class="insta-post-header" style="padding: 0 0 10px 0;">
+            <span class="testimonial-tag">💬 WhatsApp Review</span>
+            <span style="font-size: 0.75rem; color: var(--color-text-muted);">Verified Buyer</span>
+          </div>
+          <div class="testimonial-img-wrap" style="height: 320px;">
+            <img src="Asserts/Testimonials/T3.png" alt="WhatsApp Review 3" class="testimonial-img">
+          </div>
+          <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-top: 8px;">"Pristine finish and fast shipping! Highly recommended."</p>
+        </article>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Image Lightbox Modal -->
+  <div class="lightbox-modal" id="image-lightbox-modal" aria-hidden="true">
+    <div class="lightbox-content">
+      <button type="button" class="lightbox-close" id="lightbox-close-btn" aria-label="Close Lightbox">✕</button>
+      <img src="" alt="Testimonial Full View" id="lightbox-target-img" class="lightbox-img">
+    </div>
+  </div>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-glass">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <div class="footer-logo">
+              <img src="Asserts/HappyBellsLogo.png" alt="Happy Bells" class="footer-logo-img">
+              <span class="brand-text">Happy Bells</span>
+            </div>
+            <p style="font-size: 0.92rem; color: var(--color-text-muted);">
+              Personalized & memory-based gifting. Bringing warmth, romance, and elegance to life's sweetest milestones.
+            </p>
+          </div>
+
+          <div>
+            <h4 class="footer-title">Explore</h4>
+            <ul class="footer-links">
+              <li><a href="index.html#hero">Home</a></li>
+              <li><a href="index.html#showcase">Memory Collections</a></li>
+              <li><a href="reviews.html">Happy Stories</a></li>
+              <li><a href="index.html#owner-story">About Founder</a></li>
+            </ul>
+          </div>
+
+          <div id="contact-info-block" class="glass-panel" style="padding: 20px;">
+            <h4 class="footer-title">Connect & Orders</h4>
+            <div style="display: flex; flex-direction: column; gap: 14px;">
+              <div class="contact-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                <a href="https://wa.me/919025375306" target="_blank" style="color: inherit; text-decoration: none; font-weight: 600;">WhatsApp: +91 9025375306</a>
+              </div>
+              <div class="contact-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                <a href="https://instagram.com/happybells_2k" target="_blank" style="color: inherit; text-decoration: none; font-weight: 600;">Instagram: @happybells_2k</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <span>© 2026 Happy Bells. Owned by Gayathiri Moorthi. All Rights Reserved.</span>
+          <span>We don't just make Gifts — We make Memories ✨</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Right-Side Gift Box Search -->
+  <div class="floating-gift-search" id="floating-gift-search">
+    <button type="button" id="gift-search-trigger" class="gift-search-btn" aria-label="Open search">
+      <svg class="gift-box-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 12V22H4V12" stroke="url(#giftGrad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M22 7H2V12H22V7Z" fill="url(#giftGrad)" stroke="url(#giftGrad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M12 7V22" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+        <path d="M12 7H7.5C6.83696 7 6.20107 6.73661 5.73223 6.26777 C5.26339 5.79893 5 5.16304 5 4.5 C5 3.83696 5.26339 3.20107 5.73223 2.73223 C6.20107 2.26339 6.83696 2 7.5 2 C10 2 12 7 12 7Z" stroke="url(#giftGrad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M12 7H16.5C17.163 7 17.7989 6.73661 18.2678 6.26777 C18.7366 5.79893 19 5.16304 19 4.5 C19 3.83696 18.7366 3.20107 18.2678 2.73223 C17.7989 2.26339 17.163 2 16.5 2 C14 2 12 7 12 7Z" stroke="url(#giftGrad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <defs>
+          <linearGradient id="giftGrad" x1="2" y1="2" x2="22" y2="22" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#D8A895"/>
+            <stop offset="1" stop-color="#F6C9CC"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <span class="gift-search-badge">🔍</span>
+    </button>
+
+    <div class="gift-search-panel" id="gift-search-panel">
+      <div class="search-panel-inner">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        <input type="text" id="global-search-input" class="search-input" placeholder="Search stories or contact info..." aria-label="Search Happy Bells">
+        <button type="button" id="search-clear-btn" class="search-clear-btn" aria-label="Clear search">✕</button>
+        <button type="button" id="gift-search-close" class="gift-search-close-btn" aria-label="Close search">✕</button>
+      </div>
+      <div class="search-panel-footer">
+        <span id="search-count-badge" class="search-count-badge">7 Stories</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="scripts/cursor.js"></script>
+  <script src="scripts/scroll.js"></script>
+  <script src="scripts/animations.js"></script>
+  <script src="scripts/search.js"></script>
+</body>
+</html>

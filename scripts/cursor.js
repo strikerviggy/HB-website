@@ -1,7 +1,7 @@
 /* ==========================================================
-   Happy Bells — Motion & Gyroscope Engine
-   Implements mouse lerp parallax and mobile Gyroscope tilt / touch
-   horizontal panning to reveal full wide photo frames across devices.
+   Happy Bells — Motion, Gyroscope & Floating Heart Trail Engine
+   Implements mouse lerp parallax, mobile Gyroscope tilt / touch
+   horizontal panning, and soft floating mouse heart trail particles.
    ========================================================== */
 
 (function () {
@@ -22,26 +22,66 @@
   let gyroPanX = null;
   let isMobileDevice = false;
 
+  // Floating Heart Particle System
+  let lastHeartTime = 0;
+  const heartEmojis = ['💖', '💕', '✨', '🌸', '💖'];
+
   window.addEventListener('resize', () => {
     windowWidth = window.innerWidth;
     windowHeight = window.innerHeight;
   });
 
-  // Desktop Mouse Movement
+  // Desktop Mouse Movement + Soft Floating Heart Generator
   window.addEventListener('mousemove', (e) => {
     mouse.x = e.clientX;
     mouse.y = e.clientY;
+
+    const now = Date.now();
+    if (now - lastHeartTime > 55) { // Spawn heart particle every ~55ms while moving
+      lastHeartTime = now;
+      createCursorHeart(e.clientX, e.clientY);
+    }
   });
+
+  // Touch Movement Heart Trail on Mobile
+  window.addEventListener('touchmove', (e) => {
+    if (e.touches.length > 0) {
+      const now = Date.now();
+      if (now - lastHeartTime > 70) {
+        lastHeartTime = now;
+        createCursorHeart(e.touches[0].clientX, e.touches[0].clientY);
+      }
+    }
+  }, { passive: true });
+
+  function createCursorHeart(x, y) {
+    const heart = document.createElement('span');
+    heart.className = 'cursor-heart-particle';
+    heart.textContent = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+    
+    // Slight random position & angle offset for natural floating drift
+    const offsetX = (Math.random() - 0.5) * 22;
+    const offsetY = (Math.random() - 0.5) * 12;
+    const randomScale = Math.random() * 0.45 + 0.65;
+    const randomRot = (Math.random() - 0.5) * 45;
+
+    heart.style.left = `${x + offsetX}px`;
+    heart.style.top = `${y + offsetY}px`;
+    heart.style.transform = `scale(${randomScale}) rotate(${randomRot}deg)`;
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+      heart.remove();
+    }, 850);
+  }
 
   // Mobile Gyroscope Device Orientation Event Listener
   function handleOrientation(e) {
     if (e.gamma !== null && e.gamma !== undefined) {
       isMobileDevice = true;
-      // Gamma represents left-to-right tilt angle (-45° to +45°)
       const clampedGamma = Math.max(-25, Math.min(25, e.gamma));
-      // Normalize to 0 (tilted left) to 1 (tilted right)
       const normGamma = (clampedGamma + 25) / 50;
-      // Map to photo translate percentage (-18% to 0%)
       gyroPanX = normGamma * -18;
     }
   }
@@ -67,7 +107,7 @@
   document.addEventListener('DOMContentLoaded', () => {
     const photoFrameWrapper = document.querySelector('.photo-frame-wrapper');
     let touchStartX = 0;
-    let currentTouchPan = -9; // Start centered
+    let currentTouchPan = -9;
 
     if (photoFrameWrapper) {
       photoFrameWrapper.addEventListener('touchstart', (e) => {
@@ -87,13 +127,11 @@
     }
   });
 
-  // Animation Loop
+  // Parallax Animation Loop
   function renderParallax() {
-    // Lerp algorithm: current = current + (target - current) * factor
     pos.x += (mouse.x - pos.x) * lerpFactor;
     pos.y += (mouse.y - pos.y) * lerpFactor;
 
-    // Center offsets (-0.5 to 0.5)
     const offsetX = (pos.x / windowWidth) - 0.5;
     const offsetY = (pos.y / windowHeight) - 0.5;
 
@@ -132,15 +170,13 @@
       card.style.transform = `translate3d(${cardX}px, ${cardY}px, 0)`;
     });
 
-    // 5. Left-Right Horizontal Pan for Wide Cover Photo (Mouse, Touch, or Gyroscope)
+    // 5. Left-Right Horizontal Pan for Wide Cover Photo
     const coverPhoto = document.querySelector('.cover-photo');
     if (coverPhoto) {
       let finalPanX;
       if (gyroPanX !== null) {
-        // Gyroscope phone tilt or touch drag on mobile
         finalPanX = gyroPanX;
       } else {
-        // Desktop mouse movement pan
         finalPanX = (offsetX + 0.5) * -18;
       }
       coverPhoto.style.transform = `translateX(${finalPanX}%) scale(1.02)`;
