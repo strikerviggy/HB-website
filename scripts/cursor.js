@@ -1,7 +1,7 @@
 /* ==========================================================
-   Happy Bells — Cursor Parallax Engine
-   Implements smooth linear interpolation (lerp) parallax motion
-   reacting to mouse movements across glass panels and hero layers.
+   Happy Bells — Motion & Gyroscope Engine
+   Implements mouse lerp parallax and mobile Gyroscope tilt / touch
+   horizontal panning to reveal full wide photo frames across devices.
    ========================================================== */
 
 (function () {
@@ -18,15 +18,73 @@
   let windowWidth = window.innerWidth;
   let windowHeight = window.innerHeight;
 
+  // Gyroscope Mobile Orientation Pan Target
+  let gyroPanX = null;
+  let isMobileDevice = false;
+
   window.addEventListener('resize', () => {
     windowWidth = window.innerWidth;
     windowHeight = window.innerHeight;
   });
 
-  // Capture cursor position normalized around screen center (-1 to 1)
+  // Desktop Mouse Movement
   window.addEventListener('mousemove', (e) => {
     mouse.x = e.clientX;
     mouse.y = e.clientY;
+  });
+
+  // Mobile Gyroscope Device Orientation Event Listener
+  function handleOrientation(e) {
+    if (e.gamma !== null && e.gamma !== undefined) {
+      isMobileDevice = true;
+      // Gamma represents left-to-right tilt angle (-45° to +45°)
+      const clampedGamma = Math.max(-25, Math.min(25, e.gamma));
+      // Normalize to 0 (tilted left) to 1 (tilted right)
+      const normGamma = (clampedGamma + 25) / 50;
+      // Map to photo translate percentage (-18% to 0%)
+      gyroPanX = normGamma * -18;
+    }
+  }
+
+  // Register Gyroscope Event
+  if (window.DeviceOrientationEvent) {
+    if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+      window.addEventListener('touchstart', () => {
+        DeviceOrientationEvent.requestPermission()
+          .then(res => {
+            if (res === 'granted') {
+              window.addEventListener('deviceorientation', handleOrientation, true);
+            }
+          })
+          .catch(() => {});
+      }, { once: true });
+    } else {
+      window.addEventListener('deviceorientation', handleOrientation, true);
+    }
+  }
+
+  // Mobile Touch Horizontal Swipe Pan Fallback
+  document.addEventListener('DOMContentLoaded', () => {
+    const photoFrameWrapper = document.querySelector('.photo-frame-wrapper');
+    let touchStartX = 0;
+    let currentTouchPan = -9; // Start centered
+
+    if (photoFrameWrapper) {
+      photoFrameWrapper.addEventListener('touchstart', (e) => {
+        if (e.touches.length > 0) {
+          touchStartX = e.touches[0].clientX;
+        }
+      }, { passive: true });
+
+      photoFrameWrapper.addEventListener('touchmove', (e) => {
+        if (e.touches.length > 0) {
+          const deltaX = e.touches[0].clientX - touchStartX;
+          currentTouchPan = Math.max(-18, Math.min(0, currentTouchPan + (deltaX * 0.08)));
+          touchStartX = e.touches[0].clientX;
+          gyroPanX = currentTouchPan;
+        }
+      }, { passive: true });
+    }
   });
 
   // Animation Loop
@@ -42,7 +100,7 @@
     // 1. Shift Ambient Blobs gently
     const blobs = document.querySelectorAll('.ambient-blob');
     blobs.forEach((blob, index) => {
-      const depth = (index + 1) * 25;
+      const depth = (index + 1) * 20;
       const moveX = offsetX * depth;
       const moveY = offsetY * depth;
       blob.style.transform = `translate3d(${moveX}px, ${moveY}px, 0)`;
@@ -51,34 +109,41 @@
     // 2. Dangling Bells subtle shift
     const danglingBells = document.querySelector('.dangling-bells-container');
     if (danglingBells) {
-      const bellX = offsetX * -18;
-      const bellY = offsetY * -8;
+      const bellX = offsetX * -14;
+      const bellY = offsetY * -6;
       danglingBells.style.transform = `translate3d(calc(-50% + ${bellX}px), ${bellY}px, 0)`;
     }
 
     // 3. Hero Photo Card subtle 3D tilt & shift
-    const heroCard = document.querySelector('.photo-tear-card');
+    const heroCard = document.querySelector('.photo-frame-card');
     if (heroCard) {
-      const tiltX = offsetY * -12; // tilt around X axis
-      const tiltY = offsetX * 12;  // tilt around Y axis
-      const transX = offsetX * 15;
-      const transY = offsetY * 15;
+      const tiltX = offsetY * -8;
+      const tiltY = offsetX * 8;
+      const transX = offsetX * 10;
+      const transY = offsetY * 10;
       heroCard.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) translate3d(${transX}px, ${transY}px, 0)`;
     }
 
     // 4. Parallax Glass Cards on hover/mousemove
     const glassCards = document.querySelectorAll('.parallax-card');
     glassCards.forEach((card) => {
-      const cardX = offsetX * 10;
-      const cardY = offsetY * 10;
+      const cardX = offsetX * 8;
+      const cardY = offsetY * 8;
       card.style.transform = `translate3d(${cardX}px, ${cardY}px, 0)`;
     });
 
-    // 5. Left-Right Horizontal Pan for Wide Cover Photo (reveals both client photo frames)
+    // 5. Left-Right Horizontal Pan for Wide Cover Photo (Mouse, Touch, or Gyroscope)
     const coverPhoto = document.querySelector('.cover-photo');
     if (coverPhoto) {
-      const panX = (offsetX + 0.5) * -16.5;
-      coverPhoto.style.transform = `translateX(${panX}%) scale(1.02)`;
+      let finalPanX;
+      if (gyroPanX !== null) {
+        // Gyroscope phone tilt or touch drag on mobile
+        finalPanX = gyroPanX;
+      } else {
+        // Desktop mouse movement pan
+        finalPanX = (offsetX + 0.5) * -18;
+      }
+      coverPhoto.style.transform = `translateX(${finalPanX}%) scale(1.02)`;
     }
 
     requestAnimationFrame(renderParallax);

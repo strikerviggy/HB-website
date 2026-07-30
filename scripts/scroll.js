@@ -78,27 +78,5 @@
 
       bloomObserver.observe(bloomVisual);
     }
-
-    // 5. Scroll-based Photo Tear Clip-Path Progress
-    const heroSection = document.querySelector('.hero-section');
-    const topTearLayer = document.querySelector('.tear-layer-top');
-
-    if (heroSection && topTearLayer) {
-      window.addEventListener('scroll', () => {
-        const scrollPos = window.scrollY;
-        const heroHeight = heroSection.offsetHeight;
-
-        if (scrollPos <= heroHeight) {
-          const progress = Math.min(1, scrollPos / (heroHeight * 0.6));
-          // Gradually tear top photo reveal layer as user scrolls hero
-          if (progress > 0.05) {
-            const cutY = 100 - (progress * 60); // 100% down to 40%
-            topTearLayer.style.clipPath = `polygon(0 0, 100% 0, 100% ${cutY}%, 75% ${cutY + 8}%, 50% ${cutY - 4}%, 25% ${cutY + 6}%, 0 ${cutY}%)`;
-          } else {
-            topTearLayer.style.clipPath = 'polygon(0 0, 100% 0, 100% 100%, 0 100%)';
-          }
-        }
-      });
-    }
   });
 })();

@@ -487,8 +487,8 @@ body {
   transform: translateY(-2px);
 }
 
-/* Photo Tear Reveal Feature Container — Big Landscape Rectangle */
-.photo-tear-wrapper {
+/* Photo Frame Container — Big Landscape Rectangle */
+.photo-frame-wrapper {
   position: relative;
   width: 100%;
   max-width: 680px;
@@ -496,12 +496,12 @@ body {
   margin: 0 auto;
 }
 
-.photo-tear-card {
+.photo-frame-card {
   position: relative;
   width: 100%;
   height: 100%;
   border-radius: var(--radius-lg);
-  padding: 14px;
+  padding: 10px;
   background: var(--glass-bg);
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
@@ -510,113 +510,49 @@ body {
   overflow: hidden;
 }
 
-/* Layer beneath the torn photo */
-.tear-layer-underneath {
-  position: absolute;
-  inset: 14px;
-  border-radius: calc(var(--radius-lg) - 8px);
-  background: linear-gradient(135deg, #FCE8E9 0%, #E4DCF2 100%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 32px;
-  text-align: center;
-  z-index: 1;
-}
-
-.underneath-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 14px;
-}
-
-.underneath-icon {
-  width: 60px;
-  height: 60px;
-  background: #fff;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 8px 20px rgba(62, 44, 65, 0.1);
-}
-
-.underneath-title {
-  font-family: var(--font-serif);
-  font-size: 1.8rem;
-  color: var(--color-text-contrast);
-  line-height: 1.2;
-}
-
-.underneath-sub {
-  font-size: 0.92rem;
-  color: var(--color-text-muted);
-}
-
-/* Top Photo Layer with Ultra-Smooth Curved Clip-Path Tear */
-.tear-layer-top {
-  position: absolute;
-  inset: 14px;
-  border-radius: calc(var(--radius-lg) - 8px);
-  z-index: 2;
-  overflow: hidden;
-  transition: clip-path 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-}
-
 .cover-photo-viewport {
   width: 100%;
   height: 100%;
   overflow: hidden;
   position: relative;
-  border-radius: calc(var(--radius-lg) - 8px);
+  border-radius: calc(var(--radius-lg) - 4px);
 }
 
 .cover-photo {
-  width: 120%; /* Wider than container so mouse movement pans left-right to reveal full image */
+  width: 125%; /* Allows smooth panning left-right to show full client photo frames */
   height: 100%;
   object-fit: cover;
   object-position: center;
-  border-radius: calc(var(--radius-lg) - 8px);
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: calc(var(--radius-lg) - 4px);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform;
+  touch-action: pan-y;
 }
 
-/* Torn Edge Overlay Effect */
-.torn-paper-edge {
+/* Reduced Font Size Pan Notification Badge */
+.pan-hint-badge {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 3;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-
-/* Ultra-Smooth Organic Curved Tear (No sharp zigzags) */
-.photo-tear-wrapper:hover .tear-layer-top {
-  clip-path: polygon(0 0, 100% 0, 100% 38%, 78% 50%, 52% 42%, 28% 52%, 0 40%);
-}
-
-.photo-tear-wrapper:hover .cover-photo {
-  transform: scale(1.04);
-}
-
-.photo-tear-wrapper:hover .torn-paper-edge {
-  opacity: 1;
-}
-
-.tear-hint-badge {
-  position: absolute;
-  bottom: 24px;
-  right: 24px;
+  bottom: 14px;
+  right: 14px;
   z-index: 4;
   pointer-events: none;
-  animation: bounceHint 2s infinite ease-in-out;
+  font-size: 0.72rem;
+  font-weight: 500;
+  padding: 4px 12px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: var(--radius-full);
+  box-shadow: 0 4px 12px rgba(62, 44, 65, 0.08);
+  color: var(--color-text-contrast);
+  letter-spacing: 0.01em;
+  animation: bounceHint 3s infinite ease-in-out;
+}
+
+@keyframes bounceHint {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
 }
 
 @keyframes bounceHint {
@@ -954,20 +890,175 @@ body {
 .delay-2 { transition-delay: 0.3s; }
 .delay-3 { transition-delay: 0.45s; }
 
-/* --- RESPONSIVE BREAKPOINTS --- */
+/* --- RESPONSIVE BREAKPOINTS (Samsung S25 Ultra, iPhone 14/15/16, Tablets) --- */
 @media (max-width: 1024px) {
   .hero-title { font-size: 3rem; }
-  .hero-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+  .hero-grid { grid-template-columns: 1fr; gap: 36px; text-align: center; }
   .hero-content { align-items: center; text-align: center; }
-  .bloom-card-container { grid-template-columns: 1fr; gap: 40px; }
+  .bloom-card-container { grid-template-columns: 1fr; gap: 36px; }
   .showcase-grid { grid-template-columns: 1fr 1fr; }
   .story-card-grid { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 768px) {
-  .header-welcome { display: none; }
-  .hero-title { font-size: 2.3rem; }
-  .showcase-grid { grid-template-columns: 1fr; }
-  .footer-grid { grid-template-columns: 1fr; gap: 30px; }
-  .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+  .site-header {
+    top: 10px;
+    padding: 0 12px;
+  }
+
+  .header-inner {
+    padding: 8px 16px;
+  }
+
+  .logo-img {
+    width: 48px;
+    height: 48px;
+  }
+
+  .brand-text {
+    font-size: 1.35rem;
+  }
+
+  .header-welcome {
+    display: none;
+  }
+
+  .owner-info {
+    display: none;
+  }
+
+  .owner-avatar-wrap {
+    width: 38px;
+    height: 38px;
+  }
+
+  .hero-section {
+    padding-top: 110px;
+    padding-bottom: 50px;
+  }
+
+  .dangling-bells-container {
+    top: 65px;
+    height: 110px;
+    padding: 0 16px;
+    opacity: 0.7;
+  }
+
+  .bell-svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .hero-title {
+    font-size: 2.3rem;
+  }
+
+  .hero-description {
+    font-size: 1rem;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+  }
+
+  .btn-primary, .btn-secondary {
+    width: 100%;
+    justify-content: center;
+    padding: 14px 24px;
+  }
+
+  .photo-frame-wrapper {
+    max-width: 100%;
+    aspect-ratio: 16 / 10;
+  }
+
+  .bloom-card-container {
+    padding: 24px 18px;
+  }
+
+  .section-title {
+    font-size: 2.2rem;
+  }
+
+  .bloom-quote {
+    font-size: 1.2rem;
+  }
+
+  .sakura-svg {
+    width: 240px;
+    height: 240px;
+  }
+
+  .bloom-visual-wrap {
+    min-height: 300px;
+  }
+
+  .showcase-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .gift-card-img-wrap {
+    height: 200px;
+  }
+
+  .story-card-grid {
+    padding: 24px 18px;
+  }
+
+  .footer-glass {
+    padding: 40px 20px 24px 20px;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+}
+
+/* Extra Compact Phones (Samsung S25 Ultra, iPhone 14/15/16 Pro Max - 390px to 430px) */
+@media (max-width: 480px) {
+  .container {
+    padding: 0 14px;
+  }
+
+  .brand-text {
+    font-size: 1.15rem;
+  }
+
+  .logo-img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .hero-title {
+    font-size: 1.95rem;
+  }
+
+  .section-title {
+    font-size: 1.85rem;
+  }
+
+  .photo-frame-wrapper {
+    aspect-ratio: 16 / 11;
+  }
+
+  .pan-hint-badge {
+    font-size: 0.68rem;
+    padding: 3px 8px;
+    bottom: 8px;
+    right: 8px;
+  }
+
+  .btn-primary {
+    font-size: 0.95rem;
+  }
 }
