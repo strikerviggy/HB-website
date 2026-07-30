@@ -1,7 +1,8 @@
 /* ==========================================================
-   Happy Bells — Animations & Particle Engine
+   Happy Bells — Animations, Video Player & Lightbox Engine
    Generates background drifting sakura petals, manages flower bloom SVG
-   path dynamics, swinging bell physics, and Instagram feed interactions.
+   path dynamics, swinging bell physics, Instagram feed interactions,
+   and testimonial video player / image lightbox controls.
    ========================================================== */
 
 (function () {
@@ -133,5 +134,52 @@
     }, { threshold: 0.2 });
 
     mirrorElements.forEach((el) => mirrorObserver.observe(el));
+
+    // --- 4. VIDEO PLAYER INTERACTION (T7.mp4) ---
+    const video = document.getElementById('testimonial-video');
+    const videoWrapper = document.getElementById('video-wrapper');
+    const videoCard = document.querySelector('.story-video-card');
+
+    if (video && videoWrapper) {
+      videoWrapper.addEventListener('click', () => {
+        if (video.paused) {
+          video.play();
+          if (videoCard) videoCard.classList.add('playing');
+        } else {
+          video.pause();
+          if (videoCard) videoCard.classList.remove('playing');
+        }
+      });
+    }
+
+    // --- 5. LIGHTBOX MODAL FOR REVIEW SCREENSHOTS ---
+    const lightboxModal = document.getElementById('image-lightbox-modal');
+    const lightboxImg = document.getElementById('lightbox-target-img');
+    const lightboxClose = document.getElementById('lightbox-close-btn');
+    const lightboxTriggers = document.querySelectorAll('.lightbox-trigger');
+
+    if (lightboxModal && lightboxImg) {
+      lightboxTriggers.forEach((trigger) => {
+        trigger.addEventListener('click', () => {
+          const imgSrc = trigger.getAttribute('data-img');
+          if (imgSrc) {
+            lightboxImg.src = imgSrc;
+            lightboxModal.classList.add('active');
+          }
+        });
+      });
+
+      if (lightboxClose) {
+        lightboxClose.addEventListener('click', () => {
+          lightboxModal.classList.remove('active');
+        });
+      }
+
+      lightboxModal.addEventListener('click', (e) => {
+        if (e.target === lightboxModal) {
+          lightboxModal.classList.remove('active');
+        }
+      });
+    }
   });
 })();
