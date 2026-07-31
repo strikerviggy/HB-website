@@ -93,11 +93,31 @@
             <span class="insta-tag-badge">🎥 Video Unboxing</span>
           </div>
           <div class="video-viewport" id="video-wrapper" style="aspect-ratio: 9/16; max-height: 380px;">
-            <video id="testimonial-video" src="Asserts/Testimonials/T7.mp4" playsinline preload="auto" loop></video>
-            <div class="video-play-overlay" id="video-play-trigger">
-              <div class="video-play-btn">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            <video id="testimonial-video" src="Asserts/Testimonials/T7.mp4" playsinline preload="auto"></video>
+            <div class="video-play-overlay" id="video-play-trigger" title="Click to play / pause video">
+              <div class="video-play-btn center-play-btn">
+                <svg class="icon-play" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                <svg class="icon-pause-overlay" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" style="display: none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                <svg class="icon-replay" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="display: none;"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
               </div>
+            </div>
+
+            <!-- Bottom Glass Video Control Bar -->
+            <div class="video-control-bar">
+              <button type="button" class="vid-btn vid-play-pause-btn" aria-label="Play or Pause">
+                <svg class="btn-icon-play" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                <svg class="btn-icon-pause" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="display: none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+              </button>
+              <div class="vid-progress-container">
+                <div class="vid-progress-bar"></div>
+              </div>
+              <button type="button" class="vid-btn vid-replay-btn" aria-label="Replay Video" title="Replay">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+              </button>
+              <button type="button" class="vid-btn vid-mute-btn" aria-label="Mute or Unmute" title="Sound">
+                <svg class="btn-icon-mute" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+                <svg class="btn-icon-unmute" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: none;"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+              </button>
             </div>
           </div>
           <div class="product-card-body">
@@ -143,6 +163,49 @@
           </div>
           <h3 class="product-title" style="font-size: 1.25rem; margin-top: 8px;">PKN School Celebration</h3>
           <p style="font-size: 0.88rem; color: var(--color-text-muted);">Students wearing custom Happy Bells milestone badges at PKN School function.</p>
+        </article>
+
+        <!-- 5. Roar Magazine TNPL Corporate Sample -->
+        <article class="product-card mirror-blend reveal-on-scroll delay-1" style="grid-column: span 1;">
+          <div class="insta-post-header">
+            <div class="insta-author">
+              <img src="Asserts/HappyBellsLogo.png" alt="Happy Bells" class="insta-avatar">
+              <span class="insta-author-name">happybells_2k</span>
+            </div>
+            <span class="insta-tag-badge">📰 Roar Magazine (TNPL)</span>
+          </div>
+          <div class="video-viewport" style="aspect-ratio: 9/16; max-height: 380px;">
+            <video src="Asserts/Roar Magazine (TNPL).mp4" playsinline preload="auto"></video>
+            <div class="video-play-overlay" title="Click to play / pause video">
+              <div class="video-play-btn center-play-btn">
+                <svg class="icon-play" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                <svg class="icon-pause-overlay" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" style="display: none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                <svg class="icon-replay" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="display: none;"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+              </div>
+            </div>
+
+            <!-- Bottom Glass Video Control Bar -->
+            <div class="video-control-bar">
+              <button type="button" class="vid-btn vid-play-pause-btn" aria-label="Play or Pause">
+                <svg class="btn-icon-play" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                <svg class="btn-icon-pause" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="display: none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+              </button>
+              <div class="vid-progress-container">
+                <div class="vid-progress-bar"></div>
+              </div>
+              <button type="button" class="vid-btn vid-replay-btn" aria-label="Replay Video" title="Replay">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+              </button>
+              <button type="button" class="vid-btn vid-mute-btn" aria-label="Mute or Unmute" title="Sound">
+                <svg class="btn-icon-mute" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+                <svg class="btn-icon-unmute" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: none;"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+              </button>
+            </div>
+          </div>
+          <div class="product-card-body">
+            <h3 class="product-title" style="font-size: 1.25rem;">Roar Magazine (TNPL)</h3>
+            <p class="product-description">Custom designed Roar Magazine presentation sample delivered for TNPL (Tamil Nadu Newsprint and Papers Ltd).</p>
+          </div>
         </article>
 
         <!-- 5. WhatsApp Customer Review (T1.png) -->

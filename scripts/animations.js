@@ -135,22 +135,98 @@
 
     mirrorElements.forEach((el) => mirrorObserver.observe(el));
 
-    // --- 4. VIDEO PLAYER INTERACTION (T7.mp4) ---
-    const video = document.getElementById('testimonial-video');
-    const videoWrapper = document.getElementById('video-wrapper');
-    const videoCard = document.querySelector('.story-video-card');
+    // --- 4. ADVANCED VIDEO PLAYER ENGINE WITH PLAY, PAUSE, REPLAY & PROGRESS BAR ---
+    const videoViewports = document.querySelectorAll('.video-viewport');
 
-    if (video && videoWrapper) {
-      videoWrapper.addEventListener('click', () => {
-        if (video.paused) {
-          video.play();
-          if (videoCard) videoCard.classList.add('playing');
+    videoViewports.forEach((wrapper) => {
+      const vid = wrapper.querySelector('video');
+      const iconPlay = wrapper.querySelector('.icon-play');
+      const iconReplay = wrapper.querySelector('.icon-replay');
+      const playPauseBtn = wrapper.querySelector('.vid-play-pause-btn');
+      const replayBtn = wrapper.querySelector('.vid-replay-btn');
+      const muteBtn = wrapper.querySelector('.vid-mute-btn');
+      const progressBar = wrapper.querySelector('.vid-progress-bar');
+      const btnIconPlay = wrapper.querySelector('.btn-icon-play');
+      const btnIconPause = wrapper.querySelector('.btn-icon-pause');
+      const btnIconMute = wrapper.querySelector('.btn-icon-mute');
+      const btnIconUnmute = wrapper.querySelector('.btn-icon-unmute');
+
+      if (!vid) return;
+
+      // Toggle Play / Pause
+      function togglePlay(e) {
+        if (e) e.stopPropagation();
+        if (vid.paused || vid.ended) {
+          if (vid.ended) vid.currentTime = 0;
+          vid.play();
+          wrapper.classList.add('playing');
+          wrapper.classList.remove('paused', 'ended');
+          if (btnIconPlay) btnIconPlay.style.display = 'none';
+          if (btnIconPause) btnIconPause.style.display = 'inline-block';
         } else {
-          video.pause();
-          if (videoCard) videoCard.classList.remove('playing');
+          vid.pause();
+          wrapper.classList.remove('playing');
+          wrapper.classList.add('paused');
+          if (btnIconPlay) btnIconPlay.style.display = 'inline-block';
+          if (btnIconPause) btnIconPause.style.display = 'none';
+        }
+      }
+
+      // Restart / Replay Video
+      function replayVideo(e) {
+        if (e) e.stopPropagation();
+        vid.currentTime = 0;
+        vid.play();
+        wrapper.classList.add('playing');
+        wrapper.classList.remove('paused', 'ended');
+        if (iconPlay) iconPlay.style.display = 'block';
+        if (iconReplay) iconReplay.style.display = 'none';
+        if (btnIconPlay) btnIconPlay.style.display = 'none';
+        if (btnIconPause) btnIconPause.style.display = 'inline-block';
+      }
+
+      // Viewport Click Event
+      wrapper.addEventListener('click', (e) => {
+        if (e.target.closest('.video-control-bar')) return;
+        togglePlay(e);
+      });
+
+      if (playPauseBtn) playPauseBtn.addEventListener('click', togglePlay);
+      if (replayBtn) replayBtn.addEventListener('click', replayVideo);
+
+      // Sound Mute / Unmute Toggle
+      if (muteBtn) {
+        muteBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          vid.muted = !vid.muted;
+          if (vid.muted) {
+            if (btnIconMute) btnIconMute.style.display = 'inline-block';
+            if (btnIconUnmute) btnIconUnmute.style.display = 'none';
+          } else {
+            if (btnIconMute) btnIconMute.style.display = 'none';
+            if (btnIconUnmute) btnIconUnmute.style.display = 'inline-block';
+          }
+        });
+      }
+
+      // Live Progress Scrubber Update
+      vid.addEventListener('timeupdate', () => {
+        if (progressBar && vid.duration) {
+          const pct = (vid.currentTime / vid.duration) * 100;
+          progressBar.style.width = `${pct}%`;
         }
       });
-    }
+
+      // Video Reaches End -> Show Replay Icon 🔄
+      vid.addEventListener('ended', () => {
+        wrapper.classList.remove('playing', 'paused');
+        wrapper.classList.add('ended');
+        if (iconPlay) iconPlay.style.display = 'none';
+        if (iconReplay) iconReplay.style.display = 'block';
+        if (btnIconPlay) btnIconPlay.style.display = 'inline-block';
+        if (btnIconPause) btnIconPause.style.display = 'none';
+      });
+    });
 
     // --- 5. LIGHTBOX MODAL FOR REVIEW SCREENSHOTS ---
     const lightboxModal = document.getElementById('image-lightbox-modal');
