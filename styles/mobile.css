@@ -1,0 +1,301 @@
+/* ==========================================================
+   Happy Bells — Dedicated Mobile & Handheld Stylesheet
+   Tailored responsive UI, touch-friendly navigation dock,
+   and optimized card layouts for Samsung S25 Ultra, iPhone, and Tablets.
+   ========================================================== */
+
+/* Hide Mobile Bottom Nav on Desktop by default */
+.mobile-bottom-nav {
+  display: none;
+}
+
+/* ==========================================================
+   HANDHELD & TABLET RESPONSIVE ENGINE (max-width: 768px)
+   ========================================================== */
+@media (max-width: 768px) {
+
+  /* 1. Mobile Container & Typography Scaling */
+  .container {
+    padding: 0 16px;
+  }
+
+  .site-header {
+    padding: 10px 0;
+  }
+
+  .header-welcome {
+    display: none; /* Hide middle welcome pill on smaller mobile headers */
+  }
+
+  .brand-text {
+    font-size: 1.2rem;
+  }
+
+  .logo-img {
+    width: 38px;
+    height: 38px;
+  }
+
+  .owner-info {
+    display: none; /* Hide text, show avatar on mobile header */
+  }
+
+  .hero-section {
+    padding-top: 100px;
+    padding-bottom: 30px;
+    min-height: auto;
+  }
+
+  .hero-title {
+    font-size: 2.1rem;
+    line-height: 1.2;
+  }
+
+  .hero-subtitle {
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+  }
+
+  .hero-description {
+    font-size: 0.95rem;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+  }
+
+  .btn-primary, .btn-secondary {
+    width: 100%;
+    justify-content: center;
+    padding: 12px 20px;
+  }
+
+  /* 2. Photo Frame Cover (Client Photo reveal) */
+  .photo-frame-card {
+    padding: 10px;
+    margin-top: 20px;
+  }
+
+  .photo-frame-wrapper {
+    aspect-ratio: 16 / 10;
+  }
+
+  .pan-hint-badge {
+    font-size: 0.68rem;
+    padding: 3px 10px;
+    bottom: 8px;
+    right: 8px;
+  }
+
+  /* 3. Horizontal Touch Scrollable Category Tabs */
+  .category-tabs-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox */
+    padding-bottom: 8px;
+    margin-bottom: 24px;
+  }
+
+  .category-tabs-wrapper::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+  }
+
+  .category-tabs {
+    display: flex;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    gap: 10px;
+    justify-content: flex-start;
+    padding: 4px;
+  }
+
+  .category-tab {
+    flex-shrink: 0;
+    padding: 8px 16px;
+    font-size: 0.82rem;
+  }
+
+  /* 4. Single Column Instagram Feed & Card Spacing */
+  .product-feed-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .product-card {
+    border-radius: var(--radius-md);
+  }
+
+  .product-img-viewport {
+    aspect-ratio: 1 / 1;
+  }
+
+  .product-card-body {
+    padding: 12px 14px 16px 14px;
+  }
+
+  .product-title {
+    font-size: 1.35rem;
+  }
+
+  .product-description {
+    font-size: 0.88rem;
+  }
+
+  .product-inquire-btn {
+    padding: 10px 14px;
+    font-size: 0.88rem;
+  }
+
+  /* 5. Mobile Video Viewport Scaling (T7.mp4 & TNPL_Magazine.mp4) */
+  .video-viewport {
+    max-height: 320px !important;
+    aspect-ratio: 9 / 16;
+  }
+
+  .center-play-btn {
+    width: 52px;
+    height: 52px;
+  }
+
+  .center-play-btn svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .video-control-bar {
+    bottom: 8px;
+    left: 8px;
+    right: 8px;
+    padding: 4px 8px;
+  }
+
+  .vid-btn {
+    width: 24px;
+    height: 24px;
+  }
+
+  /* 6. Stories & Testimonials Layout */
+  .stories-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .testimonials-feed-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .story-video-caption {
+    font-size: 1.1rem;
+  }
+
+  /* 7. Floating Gift Box Search Position Adjustments */
+  .floating-gift-search {
+    right: 16px;
+    bottom: 84px; /* Float cleanly above mobile bottom nav dock */
+  }
+
+  .gift-search-btn {
+    width: 52px;
+    height: 52px;
+  }
+
+  .gift-box-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .gift-search-panel {
+    width: calc(100vw - 32px);
+    right: 0;
+  }
+
+  /* 8. Dedicated Mobile Bottom Glass Navigation Dock */
+  .mobile-bottom-nav {
+    display: flex;
+    position: fixed;
+    bottom: 12px;
+    left: 16px;
+    right: 16px;
+    z-index: var(--z-floating);
+    height: 60px;
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    border: 1.5px solid rgba(255, 255, 255, 0.85);
+    border-radius: var(--radius-full);
+    box-shadow: 0 16px 40px rgba(62, 44, 65, 0.22), 0 0 15px rgba(216, 168, 149, 0.3);
+    align-items: center;
+    justify-content: space-around;
+    padding: 0 8px;
+  }
+
+  .mobile-nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    color: var(--color-text-muted);
+    text-decoration: none;
+    font-size: 0.68rem;
+    font-weight: 600;
+    flex-grow: 1;
+    height: 100%;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    transition: color 0.2s ease, transform 0.2s ease;
+  }
+
+  .mobile-nav-item:active,
+  .mobile-nav-item.active {
+    color: var(--color-accent);
+    transform: scale(1.08);
+  }
+
+  .mobile-nav-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+  }
+}
+
+/* ==========================================================
+   COMPACT SMARTPHONES (Samsung S25 Ultra, iPhone 14/15/16 - max-width: 480px)
+   ========================================================== */
+@media (max-width: 480px) {
+
+  .hero-title {
+    font-size: 1.75rem;
+  }
+
+  .section-title {
+    font-size: 1.65rem;
+  }
+
+  .photo-frame-wrapper {
+    aspect-ratio: 4 / 3;
+  }
+
+  .footer-glass {
+    padding: 24px 16px;
+  }
+
+  .footer-bottom {
+    margin-top: 20px;
+    font-size: 0.78rem;
+  }
+
+  .lightbox-content {
+    max-width: 95vw;
+  }
+
+  .lightbox-img {
+    max-height: 75vh;
+  }
+}

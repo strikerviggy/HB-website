@@ -28,6 +28,16 @@
     let currentSearchQuery = '';
 
     // Expand / Collapse Gift Box Search Panel
+    const mobileNavSearch = document.getElementById('mobile-nav-search');
+    if (mobileNavSearch && giftSearchPanel) {
+      mobileNavSearch.addEventListener('click', (e) => {
+        e.stopPropagation();
+        giftSearchPanel.classList.add('active');
+        if (giftSearchWrapper) giftSearchWrapper.classList.add('expanded');
+        searchInput.focus();
+      });
+    }
+
     if (giftSearchBtn && giftSearchPanel) {
       giftSearchBtn.addEventListener('click', (e) => {
         e.stopPropagation();
